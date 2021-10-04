@@ -82,7 +82,6 @@ export default function TableImportedFiles() {
             <InboxOutlined />
           </p>
           <p className="ant-upload-text">Clique ou arraste o arquivo para importar</p>
-          <Button onClick={() => console.log(files)}>Teste</Button>
         </Upload.Dragger>
       )}
     />

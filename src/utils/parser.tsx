@@ -1,10 +1,11 @@
+import emailSanitizer from "./emailSanitizer";
+
 /** Returns a list of e-mails parsed from a file
  *
  * Supports `.txt` and `.csv` files. Returns null to all others.
  */
 export default function parser(fileName: string, fileContent: string) {
   const fileExtension = fileName.split(".").slice(-1)[0];
-  console.log(fileExtension);
   switch (fileExtension) {
     case "txt":
       return parseTxt(fileContent);
@@ -16,7 +17,10 @@ export default function parser(fileName: string, fileContent: string) {
 }
 
 function parseTxt(fileContent: string) {
-  return fileContent.split("\n").map(line => line.trim());
+  return fileContent
+    .split("\n")
+    .map(line => emailSanitizer(line))
+    .filter(email => email) as string[];
 }
 
 function parseCsv(fileContent: string) {
@@ -26,5 +30,5 @@ function parseCsv(fileContent: string) {
   if (!emailHeader) return [];
   const emailHeaderIndex = header.indexOf(emailHeader);
 
-  return lines.map(line => line[emailHeaderIndex]);
+  return lines.map(line => emailSanitizer(line[emailHeaderIndex])).filter(email => email) as string[];
 }

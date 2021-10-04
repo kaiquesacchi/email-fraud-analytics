@@ -1,6 +1,6 @@
 # Email Fraud Analytics
 
-A set of tools that help identifying frauds in a list of e-mail addresses.
+A tool-set that helps identifying frauds in a list of e-mail addresses.
 
 ## Running the project
 

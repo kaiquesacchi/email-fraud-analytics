@@ -2,6 +2,7 @@ import React from "react";
 import { Row, Col, Layout, Tabs } from "antd";
 import TableImportedFiles from "./components/TableImportedFiles";
 import TableEmails from "./components/TableEmails";
+import TableDomains from "./components/TableDomains";
 
 function App() {
   return (
@@ -22,7 +23,13 @@ function App() {
               </Col>
             </Row>
           </Tabs.TabPane>
-          <Tabs.TabPane tab="Domínios" key="domains"></Tabs.TabPane>
+          <Tabs.TabPane tab="Domínios" key="domains">
+            <Row justify="center">
+              <Col span={24}>
+                <TableDomains />
+              </Col>
+            </Row>
+          </Tabs.TabPane>
         </Tabs>
       </Layout.Content>
     </Layout>

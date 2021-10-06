@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
-import { Table } from "antd";
+import { Button, Table } from "antd";
 import useFiles from "../hooks/useFiles";
-
+import exportFile from "../utils/exportFile";
 const columns = [
   {
     title: "Domínio",
@@ -38,5 +38,19 @@ export default function TableDomains() {
     }));
   }, [files]);
 
-  return <Table columns={columns} dataSource={dataSource} />;
+  const handleExport = () => {
+    exportFile("domain_list.txt", dataSource.map(entry => entry.domain).join("\n"));
+  };
+
+  return (
+    <Table
+      columns={columns}
+      dataSource={dataSource}
+      footer={() => (
+        <Button onClick={handleExport} type="primary">
+          Exportar Lista
+        </Button>
+      )}
+    />
+  );
 }
